@@ -3,6 +3,10 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [master]
+  workflow_dispatch: # Allows you to run this manually from the Actions tab
+
+permissions:
+  contents: write # This is the "fix" that allows the bot to push to gh-pages
 
 jobs:
   build-and-deploy:
@@ -16,10 +20,10 @@ jobs:
           npm install
           npm run build
         env:
-          VITE_API_URL: ${{ secrets.VITE_API_URL }} # Map your secret here
+          VITE_API_URL: ${{ secrets.VITE_API_URL }}
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: dist # Vite builds to the 'dist' folder
+          folder: dist
           branch: gh-pages

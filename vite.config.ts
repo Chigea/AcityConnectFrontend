@@ -19,7 +19,7 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [react()],
-    base,
+    base: '/AcityConnectFrontend/',
     server: {
       port: 5173,
       proxy,
